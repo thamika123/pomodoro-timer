@@ -2,14 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import ButtonGroup from "./components/ButtonGroup";
+import Notification from "./components/Notification";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            timeLeft: 900,
+            timeLeft: 9,
             timerRunning: false,
             controlText: "Start",
+            timer: "Work",
+            notificationText: "",
+            notificationVisible: false,
         };
 
         this.tick = this.tick.bind(this);
@@ -22,7 +26,27 @@ class App extends React.Component {
             this.setState(state => ({ timeLeft: state.timeLeft - 1 }));
         } else {
             clearInterval(this.timerID);
+            this.switchTimer();
         }
+    }
+
+    switchTimer() {
+        if (this.state.timer === "Work") {
+            this.setState({
+                timeLeft: 300,
+                timer: "Break",
+                notificationText: "Time for a break!",
+            });
+        } else {
+            this.setState({
+                timeLeft: 900,
+                timer: "Work",
+                notificationText: "Back to work!",
+            });
+        }
+
+        this.setState({ notificationVisible: true, controlText: "Start" });
+        setTimeout(() => this.setState({ notificationVisible: false }), 2000);
     }
 
     controlClick() {
@@ -53,15 +77,20 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="flex flex-col justify-center items-center h-screen">
-                <h1 className="text-9xl lg:text-12xl font-black text-gray-800">
-                    {this.formatTime()}
-                </h1>
-                <ButtonGroup
-                    controlText={this.state.controlText}
-                    controlClick={this.controlClick}
-                    resetClick={this.resetClick}
-                />
+            <div>
+                {this.state.notificationVisible && (
+                    <Notification text={this.state.notificationText} />
+                )}
+                <div className="flex flex-col justify-center items-center h-screen">
+                    <h1 className="text-9xl lg:text-12xl font-black text-gray-800">
+                        {this.formatTime()}
+                    </h1>
+                    <ButtonGroup
+                        controlText={this.state.controlText}
+                        controlClick={this.controlClick}
+                        resetClick={this.resetClick}
+                    />
+                </div>
             </div>
         );
     }
