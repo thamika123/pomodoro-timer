@@ -10,6 +10,9 @@ module.exports = {
                 "12xl": "15rem"
             }
         },
+        fontFamily: {
+            "sans": ["Inter"]
+        }
     },
     variants: {
         extend: {},

@@ -8,7 +8,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            timeLeft: 9,
+            timeLeft: 900,
             timerRunning: false,
             controlText: "Start",
             timer: "Work",
@@ -61,7 +61,13 @@ class App extends React.Component {
 
     resetClick() {
         clearInterval(this.timerID);
-        this.setState({ timeLeft: 900 });
+
+        if (this.state.timer === "Work") {
+            this.setState({ timeLeft: 900 });
+        } else {
+            this.setState({ timeLeft: 300 });
+        }
+
         this.setState({ timerRunning: false, controlText: "Start" });
     }
 
