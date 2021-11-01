@@ -83,12 +83,12 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div class="flex justify-center flex-col h-screen">
                 {this.state.notificationVisible && (
                     <Notification text={this.state.notificationText} />
                 )}
-                <div className="flex flex-col justify-center items-center h-screen">
-                    <h1 className="text-9xl lg:text-12xl font-black text-gray-800">
+                <div className="flex flex-col justify-center items-center">
+                    <h1 className="text-9xl lg:text-12xl font-black text-gray-800 dark:text-gray-100">
                         {this.formatTime()}
                     </h1>
                     <ButtonGroup
