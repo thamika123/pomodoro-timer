@@ -82,7 +82,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div class="flex justify-center flex-col h-screen">
+            <div className="flex justify-center flex-col h-screen">
                 {this.state.notificationVisible && (
                     <Notification text={this.state.notificationText} />
                 )}
