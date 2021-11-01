@@ -8,18 +8,12 @@ class App extends React.Component {
         super(props);
         this.state = {
             timeLeft: 900,
-            timerRunning: true,
+            timerRunning: false,
             controlText: "Start",
         };
 
         this.tick = this.tick.bind(this);
-    }
-
-    componentDidMount() {
-        if (this.state.timerRunning) {
-            this.setState({ controlText: "Pause" });
-            this.timerID = setInterval(this.tick, 1000);
-        }
+        this.controlClick = this.controlClick.bind(this);
     }
 
     tick() {
@@ -27,6 +21,16 @@ class App extends React.Component {
             this.setState(state => ({ timeLeft: state.timeLeft - 1 }));
         } else {
             clearInterval(this.timerID);
+        }
+    }
+
+    controlClick() {
+        if (this.state.timerRunning) {
+            this.setState({ timerRunning: false, controlText: "Start" });
+            clearInterval(this.timerID);
+        } else {
+            this.setState({ timerRunning: true, controlText: "Pause" });
+            this.timerID = setInterval(this.tick, 1000);
         }
     }
 
@@ -46,7 +50,10 @@ class App extends React.Component {
                 <h1 className="text-9xl lg:text-12xl font-black text-gray-800">
                     {this.formatTime()}
                 </h1>
-                <ButtonGroup controlText={this.state.controlText} />
+                <ButtonGroup
+                    controlText={this.state.controlText}
+                    controlClick={this.controlClick}
+                />
             </div>
         );
     }
