@@ -25,7 +25,6 @@ class App extends React.Component {
         if (this.state.timeLeft) {
             this.setState(state => ({ timeLeft: state.timeLeft - 1 }));
         } else {
-            clearInterval(this.timerID);
             this.switchTimer();
         }
     }
@@ -45,7 +44,7 @@ class App extends React.Component {
             });
         }
 
-        this.setState({ notificationVisible: true, controlText: "Start" });
+        this.setState({ notificationVisible: true });
         setTimeout(() => this.setState({ notificationVisible: false }), 2000);
     }
 
