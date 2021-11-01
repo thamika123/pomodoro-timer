@@ -7,7 +7,10 @@ function ButtonGroup(props) {
             >
                 {props.controlText}
             </button>
-            <button className="bg-blue-500 rounded-lg w-40 h-12 text-white text-md font-sans font-bold focus:ring-4 ring-blue-300">
+            <button
+                className="bg-blue-500 rounded-lg w-40 h-12 text-white text-md font-sans font-bold focus:ring-4 ring-blue-300"
+                onClick={props.resetClick}
+            >
                 Reset
             </button>
         </div>

@@ -14,6 +14,7 @@ class App extends React.Component {
 
         this.tick = this.tick.bind(this);
         this.controlClick = this.controlClick.bind(this);
+        this.resetClick = this.resetClick.bind(this);
     }
 
     tick() {
@@ -32,6 +33,12 @@ class App extends React.Component {
             this.setState({ timerRunning: true, controlText: "Pause" });
             this.timerID = setInterval(this.tick, 1000);
         }
+    }
+
+    resetClick() {
+        clearInterval(this.timerID);
+        this.setState({ timeLeft: 900 });
+        this.setState({ timerRunning: false, controlText: "Start" });
     }
 
     formatTime() {
@@ -53,6 +60,7 @@ class App extends React.Component {
                 <ButtonGroup
                     controlText={this.state.controlText}
                     controlClick={this.controlClick}
+                    resetClick={this.resetClick}
                 />
             </div>
         );
