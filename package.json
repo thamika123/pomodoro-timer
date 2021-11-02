@@ -1,7 +1,7 @@
 {
-    "name": "password-generator",
+    "name": "pomodoro-timer",
     "version": "1.0.0",
-    "description": "An app for generating passwords.",
+    "description": "A React pomodoro timer.",
     "scripts": {
         "build": "npx parcel build src/index.html",
         "serve": "npx parcel src/index.html"
