@@ -29,6 +29,10 @@ class App extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        document.title = `${this.formatTime()} - ${this.state.timer}`;
+    }
+
     switchTimer() {
         if (this.state.timer === "Work") {
             this.setState({
